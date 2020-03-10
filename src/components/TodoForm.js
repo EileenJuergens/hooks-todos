@@ -9,6 +9,9 @@ export default function TodoForm () {
         if(currentTodo.text) {
             setTodo(currentTodo.text)
         }
+        else {
+            setTodo("")
+        }
         // we want to run useEffect only when the current todo changes 
         // we can check this over the currentTodo id
     }, [currentTodo.id])
