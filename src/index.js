@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import TodosContext from "./context";
 import todosReducer from "./reducer";
+
 import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
 
 // use React Context to aviod props drilling
 // export const UserContext = React.createContext();
@@ -16,6 +18,7 @@ const App = () => {
 
     return (
         <TodosContext.Provider value={{ state, dispatch }}>
+            <TodoForm/>
             <TodoList />
         </TodosContext.Provider>
 
