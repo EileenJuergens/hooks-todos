@@ -27,7 +27,6 @@ function reducer(state, action) {
 
 export default function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const value = useContext(UserContext);
 
 	return (
 		<div>
