@@ -1,16 +1,31 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import TodosContext from "../context"
 
 export default function TodoForm () {
     const [todo, setTodo] = useState("")
-    const { dispatch } = useContext(TodosContext)
+    const { state: { currentTodo = {} }, dispatch } = useContext(TodosContext)
     
+    useEffect(() => {
+        if(currentTodo.text) {
+            setTodo(currentTodo.text)
+        }
+        // we want to run useEffect only when the current todo changes 
+        // we can check this over the currentTodo id
+    }, [currentTodo.id])
+
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        dispatch({ type: "ADD_TODO", payload: todo })
+        if (currentTodo.text) {
+            dispatch({ type: "UPDATE_TODO", payload: todo })
+        }
+        else {
+            dispatch({ type: "ADD_TODO", payload: todo })
+        }
         // clear input after submit
         setTodo("")
     }
+
 
     return (
         <form 
